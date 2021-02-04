@@ -5,6 +5,7 @@ api-version: "1.13"
 website: rypofalem.github.io
 author: RypoFalem
 description: Allows players to edit data of armorstands without any commands.
+depend: [Towny]
 commands:
   ase:
     description: Changes the function of the armorstand edit tool.
