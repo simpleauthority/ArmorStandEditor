@@ -65,7 +65,7 @@ public class PlayerEditorManager implements Listener{
 		Bukkit.getServer().getScheduler().runTaskTimer(plugin, counter, 0, 1);
 	}
 
-	@EventHandler (priority = EventPriority.HIGHEST, ignoreCancelled=false)
+	@EventHandler (priority = EventPriority.MONITOR, ignoreCancelled=false)
 	void onArmorStandDamage(EntityDamageByEntityEvent event){
 		if(!(event.getDamager() instanceof Player))return;
 		Player player = (Player) event.getDamager();
@@ -81,7 +81,7 @@ public class PlayerEditorManager implements Listener{
 		if(canEdit(player, as)) applyLeftTool(player, as);
 	}
 
-	@EventHandler (priority = EventPriority.HIGHEST, ignoreCancelled=false)
+	@EventHandler (priority = EventPriority.MONITOR, ignoreCancelled=false)
 	void onArmorStandInteract(PlayerInteractAtEntityEvent event){
 		if(ignoreNextInteract) return;
 		if(event.getHand() != EquipmentSlot.HAND) return;
@@ -133,7 +133,7 @@ public class PlayerEditorManager implements Listener{
 		}
 	}
 
-	@EventHandler (priority = EventPriority.HIGHEST, ignoreCancelled=true)
+	@EventHandler (priority = EventPriority.MONITOR, ignoreCancelled=true)
 	public void onSwitchHands(PlayerSwapHandItemsEvent event){
 		if(!plugin.isEditTool(event.getOffHandItem())) return; //event assumes they are already switched
 		event.setCancelled(true);
@@ -207,7 +207,7 @@ public class PlayerEditorManager implements Listener{
 		getPlayerEditor(player.getUniqueId()).reverseEditArmorStand(as);
 	}
 
-	@EventHandler (priority = EventPriority.HIGHEST, ignoreCancelled=false)
+	@EventHandler (priority = EventPriority.MONITOR, ignoreCancelled=false)
 	void onRightClickTool(PlayerInteractEvent e){
 		if( !(e.getAction() == Action.LEFT_CLICK_AIR
 				|| e.getAction() == Action.RIGHT_CLICK_AIR
@@ -219,7 +219,7 @@ public class PlayerEditorManager implements Listener{
 		getPlayerEditor(player.getUniqueId()).openMenu();
 	}
 
-	@EventHandler (priority = EventPriority.HIGHEST, ignoreCancelled=true)
+	@EventHandler (priority = EventPriority.MONITOR, ignoreCancelled=true)
 	void onScrollNCrouch(PlayerItemHeldEvent e){
 		Player player = e.getPlayer();
 		if(!player.isSneaking()) return;
@@ -233,7 +233,7 @@ public class PlayerEditorManager implements Listener{
 		}
 	}
 
-	@EventHandler (priority = EventPriority.HIGHEST, ignoreCancelled=false)
+	@EventHandler (priority = EventPriority.MONITOR, ignoreCancelled=false)
 	void onPlayerMenuSelect(InventoryClickEvent e){
 		if(e.getInventory().getHolder() == null) return;
 		if(!(e.getInventory().getHolder() instanceof ASEHolder)) return;
